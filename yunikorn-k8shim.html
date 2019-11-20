@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>目录</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+<title>yunikorn-k8shim</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
 iframe { margin: auto; }
@@ -148,6 +148,79 @@ video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
 svg[id^="mermaidChart"] { line-height: 1em; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; white-space: nowrap; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; border: none !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-width: 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; background-position: 0px 0px; background-repeat: initial initial; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right-width: 30px; border-right-style: solid; border-right-color: transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right-style: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-style: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background-color: rgba(255, 255, 0, 0.4); background-position: initial initial; background-repeat: initial initial; }
+@media print { 
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
 
 
 :root {
@@ -658,6 +731,6 @@ footer {
 </style>
 </head>
 <body class='typora-export' >
-<div  id='write'  class = 'is-mac'><h1><a name="yunikorn探索之路" class="md-header-anchor"></a><span>YuniKorn探索之路</span></h1><h2><a name="kubernetes篇" class="md-header-anchor"></a><span>Kubernetes篇</span></h2><ul><li><h4><a name="什么是kuberneteshttpsxjzrcgithubiokuberneteshtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/kubernetes.html'><span>什么是Kubernetes</span></a></h4></li><li><h4><a name="kubernetes入门httpsxjzrcgithubiok8s-tutorialhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/k8s-tutorial.html'><span>Kubernetes入门</span></a></h4></li><li><h4><a name="kubernete调度器httpsxjzrcgithubiok8s-schedulerhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/K8s-scheduler.html'><span>Kubernete调度器</span></a></h4></li></ul><h2><a name="yunikorn篇" class="md-header-anchor"></a><span>YuniKorn篇</span></h2><ul><li><h4><a name="什么是yunikornhttpsxjzrcgithubioyunikornhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/yunikorn.html'><span>什么是YuniKorn</span></a></h4></li><li><h4><a name="yunikorn-调度器架构httpsxjzrcgithubioyunikorn-scheduler-designhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/yuniKorn-scheduler-design.html'><span>YuniKorn 调度器架构</span></a></h4></li><li><h4><a name="yunikorn-调度器配置httpsxjzrcgithubioyunikorn-scheduler-configurationhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/yunikorn-scheduler-configuration.html'><span>YuniKorn 调度器配置</span></a></h4></li><li><h4><a name="yunikorn-弹性设计httpsxjzrcgithubioyunikorn-resilliencehtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/yunikorn-resillience.html'><span>YuniKorn 弹性设计</span></a></h4></li><li><h4><a name="yunikorn-命名空间httpsxjzrcgithubioyunikorn-namespace-resource-quotahtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/yunikorn-namespace-resource-quota.html'><span>YuniKorn 命名空间</span></a></h4></li></ul><h2><a name="实战演练" class="md-header-anchor"></a><span>实战演练</span></h2><ul><li><h4><a name="kubernetes本地集群搭建httpsxjzrcgithubiok8s-envhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/k8s-env.html'><span>Kubernetes本地集群搭建</span></a></h4></li><li><h4><a name="在kubernetes中部署yunikornhttpsxjzrcgithubioyunikorn-envhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/yunikorn-env.html'><span>在Kubernetes中部署YuniKorn</span></a></h4></li><li><h4><a name="yunikorn实战httpsxjzrcgithubioyunikorn-actionhtml" class="md-header-anchor"></a><a href='https://xjzrc.github.io/yunikorn-action.html'><span>YuniKorn实战</span></a></h4></li></ul></div>
+<div  id='write'  class = 'is-mac'><h1><a name="yunikorn-k8shim" class="md-header-anchor"></a><span>yunikorn-k8shim</span></h1><p><span> yunikorn-k8shim 是一个定制化的 k8s 调度程序，它可以作为调度程序部署在K8s集群中。yunikorn-core封装了所有实际的调度逻辑，通过yunikorn-k8shim与K8s集群进行交互。默认情况下，如果pod的spec配置</span><code>schedulerName: yunikorn</code><span>属性，yunikorn-k8shim将处理所有pod的调度。 </span></p><h2><a name="对-k8s-predicates的支持" class="md-header-anchor"></a><span>对 K8s Predicates的支持</span></h2><p><code>Predicates</code><span>是K8s中的一组预注册函数，调度程序调用这些函数来检查Pod是否适合分配给节点。通用</span><code>Predicates</code><span>有：节点选择器，pod亲和力/反亲和力等。为了在YuniKorn中支持这些</span><code>Predicates</code><span>，yunikorn-k8shim没有重新实现所有功能，而是尽可能重用K8s </span><code>Predicates</code><span>相关核心代码。</span></p><p><span>yuniKorn-core不了解RM的底层，因此</span><code>Predicates</code><span>功能在yunikorn-k8shim中以</span><code>SchedulerPlugin</code><span>的形式实现。SchedulerPlugin是一种</span><code>plug/extend</code><span>调度程序功能的方法。Shim可以实现此类插件并将其注册到yunikorn-core中，因此可以在yunikorn-core中调用插入的功能。目前yunikorn-core支持以下 SchedulerPlugins :</span></p><ul><li><strong><em><span>PredicatesPlugin :</span></em></strong><span> 运行一组特定的 Predicate 函数，以确定是否可以将</span><code>提议</code><span>分配到节点上。 </span></li><li><strong><em><span>VolumesPlugin :</span></em></strong><span> 确认分配后绑定Volume</span></li><li><strong><em><span>ReconcilePlugin :</span></em></strong><span>重新同步调度程序缓存(将yunikorn-core端的缓存状态同步更新到shim端)，例如假定的分配。</span></li></ul><h3><a name="工作流程" class="md-header-anchor"></a><span>工作流程</span></h3><p><span>首先，RM需要将自己注册到yunikorn-core中，它会声明自己支持哪些调度程序插件接口。例如，RM可以实现</span><code>PredicatePlugin</code><span>接口并将其自身注册到yunikorn-core。然后，yunikorn-core将在做出分配决定之前调用PredicatePlugin API来运行Predicates 功能。</span></p><p><span>以下工作流程演示了当涉及</span><code>PredicatePlugin</code><span>怎么分配资源：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">pending pods: A, B</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">k8s-shim sends requests to yunikorn-core, including A, B</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">yunikorn-core starts to schedule A, B</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  partition -&gt; queue -&gt; app -&gt; request</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  schedule A (1)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  run predicates (3)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  generate predicates metadata (4)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  run predicate functions one by one with the metadata</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  success</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  proposal: A-&gt;N</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  schedule B (2)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  run predicates (calling shim API)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  generate predicates metadata</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  run predicate functions one by one with the metadata</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  success</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  proposal: B-&gt;N</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">commit the allocation proposal for A and notify k8s-shim</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">commit the allocation proposal for B and notify k8s-shim</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">k8s-shim binds pod A to N</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">k8s-shim binds pod B to N</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 400px;"></div><div class="CodeMirror-gutters" style="display: none; height: 400px;"></div></div></div></pre><p><span>（1）和（2）并行运行。</span></p><p><span>（3）yunikorn-core调用一个</span><code>schedulerPlugin</code><span>API来运行predicates，该API在k8s-shim端实现。</span></p><p><span>（4）K8s-shim根据当前的调度缓存生成元数据，该元数据包括一些有关节点和Pod的间歇状态。</span></p><h3><a name="predicates-白名单" class="md-header-anchor"></a><span>Predicates 白名单</span></h3><p><span>K8s-shim故意只支持Predicates白名单。主要是由于两个原因：</span></p><ul><li><span>Predicates功能很耗时，会对调度程序性能产生负面影响。支持仅必要的Predicates可以最大程度地减少影响。这将可以通过CLI选项进行配置。</span></li><li><span>尽管我们重用了一些单元测试，但实现很大程度上取决于K8的默认调度程序代码，但是覆盖范围仍然是一个问题。添加新Predicates时，将会继续提高覆盖范围。</span></li></ul><h2><a name="参考资料" class="md-header-anchor"></a><span>参考资料</span></h2><ul><li><a href='https://github.com/cloudera/yunikorn-k8shim'><span>yunikorn-k8shim</span></a></li><li><a href=' https://github.com/cloudera/yunikorn-k8shim/blob/master/docs/design/design-index.md '><span>Design documents</span></a></li><li><a href=' https://github.com/cloudera/yunikorn-k8shim/blob/master/docs/design/predicates.md '><span>Predicates Support</span></a></li></ul></div>
 </body>
 </html>

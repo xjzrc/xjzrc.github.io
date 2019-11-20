@@ -1,0 +1,663 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Kubernetes</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+}
+
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif !important;
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}
+
+#write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+#write ol li {
+    text-indent: 0.5rem;
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+    font-size: inherit !important;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit !important;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit !important;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit !important;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit !important;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit !important;
+}
+
+h2 a,
+h3 a {
+    color: #34495e;
+}
+
+h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 1rem;
+    color: #777;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul,
+ol {
+    padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .1);
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+}
+
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #fafafa;
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+#write strong {
+    padding: 0 1px;
+}
+
+#write em {
+    padding: 0 5px 0 2px;
+}
+
+#write table thead th {
+    background-color: #f2f2f2;
+}
+
+#write .CodeMirror-gutters {
+    border-right: none;
+}
+
+#write .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: Roboto Mono, Source Sans Pro, Monaco, courier, monospace !important;
+    font-size: 0.85rem;
+    word-wrap: normal;
+}
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}
+
+#write code, tt {
+    margin: 0 2px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: Roboto Mono, Source Sans Pro, Monaco, courier, monospace !important;
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}
+
+#write .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}
+
+/* heighlight. */
+#write mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+
+#write del {
+    padding: 1px 2px;
+}
+
+.cm-s-inner .cm-link,
+.cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+#write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image > .md-meta {
+    border-radius: 3px;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export' >
+<div  id='write'  class = 'is-mac'><h1><a name="kubernetes" class="md-header-anchor"></a><span>Kubernetes</span></h1><h2><a name="初识kubernetes" class="md-header-anchor"></a><span>初识Kubernetes</span></h2><p><span> Kubernetes 是一个跨主机集群的开源的容器调度平台，它可以自动化应用  </span><a href='http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/'><span>容器</span></a><span> 的部署、扩展和操作，提供以  </span><a href='http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/'><span>容器</span></a><span> 为中心的基础架构。  </span></p><p><span> Kubernetes 具有如下特点：</span></p><ul><li><strong><span>携性</span></strong><span>: 无论公有云、 私有云、混合云还是多云架构都全面支持 </span></li><li><strong><span>可扩展</span></strong><span>: 它是模块化、可插拔、可挂载、可组合的，支持各种形式的扩展</span></li><li><strong><span>自修复</span></strong><span>: 它可以自保持应用状态、可自重启、自复制、自缩放的，通过声明式语法提供了强大的自修复能力</span></li></ul><h2><a name="什么是kubernetes" class="md-header-anchor"></a><span>什么是Kubernetes</span></h2><p><span>Kubernetes是一个可以移植、可扩展的开源平台，使用 </span><a href='https://kuboard.cn/learning/k8s-intermediate/workload/wl-deployment/#deployment-概述'><span>声明式的配置</span></a><span> 并依据配置信息自动地执行容器化应用程序的管理。在所有的容器编排工具中（类似的还有 docker swarm / mesos等），Kubernetes的生态系统更大、增长更快，有更多的支持、服务和工具可供用户选择。 </span></p><p><span>2014年Google将Brog系统开源为Kubernetes。Kubernetes构建在Google Brog </span><a href='https://ai.google/research/pubs/pub43438'><span>十五年运行大规模分布式系统的经验</span></a><span> 基础之上，并结合了开源社区最好的想法和实践。 </span></p><p><strong><span>Kubernetes</span></strong><span> 源于希腊语，意为 “舵手” 或 “飞行员”， 且是英文 “governor” 和 </span><a href='http://www.etymonline.com/index.php?term=cybernetics'><span>“cybernetic”</span></a><span>的词根。 </span><strong><span>K8s</span></strong><span> 是通过将 8 个字母 “ubernete” 替换为 8 而导出的缩写。另外，在中文里，k8s 的发音与 Kubernetes 的发音比较接近。 </span></p><h3><a name="应用部署时代变迁" class="md-header-anchor"></a><span>应用部署时代变迁</span></h3><p><img src="https://kuboard.cn/assets/img/container_evolution.cb55fb19.svg" referrerpolicy="no-referrer"></p><p><span> 大致来说，在部署应用程序的方式上，我们主要经历了三个时代： </span></p><ul><li><p><strong><span>传统部署时代</span></strong><span>：早期，企业直接将应用程序部署在物理机上。由于物理机上不能为应用程序定义资源使用边界，我们也就很难合理地分配计算资源。例如：如果多个应用程序运行在同一台物理机上，可能发生这样的情况：其中的一个应用程序消耗了大多数的计算资源，导致其他应用程序不能正常运行。应对此问题的一种解决办法是，将每一个应用程序运行在不同的物理机上。然而，这种做法无法大规模实施，因为资源利用率很低，且企业维护更多物理机的成本昂贵。</span></p></li><li><p><strong><span>虚拟化部署时代</span></strong><span>：针对上述问题，虚拟化技术应运而生。用户可以在单台物理机的CPU上运行多个虚拟机（Virtual Machine）。 </span></p><ul><li><span>虚拟化技术使得应用程序被虚拟机相互分隔开，限制了应用程序之间的非法访问，进而提供了一定程度的安全性。</span></li><li><span>虚拟化技术提高了物理机的资源利用率，可以更容易地安装或更新应用程序，降低了硬件成本，因此可以更好地规模化实施。</span></li><li><span>每一个虚拟机可以认为是被虚拟化的物理机之上的一台完整的机器，其中运行了一台机器的所有组件，包括虚拟机自身的操作系统。</span></li></ul></li><li><p><strong><span>容器化部署时代</span></strong><span>：容器与虚拟机类似，但是降低了隔离层级，共享了操作系统。因此，容器可以认为是轻量级的。 </span></p><ul><li><span>与虚拟机相似，每个容器拥有自己的文件系统、CPU、内存、进程空间等</span></li><li><span>运行应用程序所需要的资源都被容器包装，并和底层基础架构解耦</span></li><li><span>容器化的应用程序可以跨云服务商、跨Linux操作系统发行版进行部署</span></li></ul></li></ul><h3><a name="容器化的优点" class="md-header-anchor"></a><span>容器化的优点</span></h3><ul><li><strong><span>敏捷地创建和部署应用程序</span></strong><span>：相较于创建虚拟机镜像，创建容器镜像更加容易和快速</span></li><li><span>持续构建集成：可以更快更频繁地构建容器镜像、部署容器化的应用程序、并且轻松地回滚应用程序</span></li><li><strong><span>分离开发和运维的关注点</span></strong><span>：在开发构建阶段就完成容器镜像的构建，构建好的镜像可以部署到多种基础设施上。这种做法将开发阶段需要关注的内容包含在如何构建容器镜像的过程中，将部署阶段需要关注的内容聚焦在如何提供基础设施以及如何使用容器镜像的过程中。降低了开发和运维的耦合度</span></li><li><strong><span>可监控性</span></strong><span>：不仅可以查看操作系统级别的资源监控信息，还可以查看应用程序健康状态以及其他信号的监控信息</span></li><li><strong><span>开发、测试、生产不同阶段的环境一致性</span></strong><span>：开发阶段在笔记本上运行的容器与测试、生产环境中运行的容器一致</span></li><li><strong><span>跨云服务商、跨操作系统发行版的可移植性</span></strong><span>：容器可运行在 Ubuntu、RHEL、CoreOS、CentOS等不同的操作系统发行版上，可以运行在私有化部署、Google Kubernetes Engine、AWS、阿里云等不同的云供应商的环境中</span></li><li><strong><span>以应用程序为中心的管理</span></strong><span>：虚拟机时代的考虑的问题是在虚拟硬件上运行一个操作系统，而容器化时代，问题的焦点则是在操作系统的逻辑资源上运行一个应用程序</span></li><li><strong><span>松耦合、分布式、弹性、无约束的微服务</span></strong><span>：应用程序被切分成更小的、独立的微服务，并可以动态部署和管理，而不是一个部署在专属机器上的庞大的单片应用程序</span></li><li><strong><span>资源隔离</span></strong><span>：确保应用程序性能不受干扰</span></li><li><strong><span>资源利用</span></strong><span>：资源高效、高密度利用</span></li></ul><h2><a name="kubernetes集群架构" class="md-header-anchor"></a><span>Kubernetes集群架构</span></h2><p><span>在硬件级别，一个Kubernetes集群由很多节点组成，这些节点被分成以下两种类型：</span></p><ul><li><span>Master（主节点）：它是承载Kubernetes控制和管理整个集群系统的</span><em><span>控制面板</span></em><span>，我们通过 Master 对每个节点 Node 发送命令。</span></li><li><span>Node（工作节点）：它们运行用户实际部署的应用，Node 可以是一台机器或者一台虚拟机。在 Node 上面可以运行多个 Pod，Pod 是 Kubernetes 管理的最小单位，同时每个 Pod 可以包含多个容器（Docker）。</span></li></ul><p><span>简单来说，Master 就是管理者，Node 就是被管理者。 通过下面的 Kubernetes 架构简图可以看到 Master 和 Node 之间的关系： </span></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/MOwlO0INfQqhpqVg6uyyP7yibrSoaLbqpicgU5tnuOWX4KoZ47F9jA5VMGojD05ibUy6re3Rhf3HUVhbnVzJ0SicBg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" referrerpolicy="no-referrer" alt=" Kubernetes 架构简图"></p><p><span>通常我们都是通过 kubectl 对 Kubernetes 下命令的，它通过 APIServer 去调用各个进程来完成对 Node 的部署和控制。APIServer 的核心功能是对核心对象（例如：Pod，Service，RC）的增删改查操作，同时也是集群内模块之间数据交换的枢纽。它包括了常用的 API，访问（权限）控制，注册，信息存储（etcd）等功能。在它的下面我们可以看到 Scheduler，它将待调度的 Pod 绑定到 Node 上，并将绑定信息写入 etcd 中。etcd 包含在 APIServer 中，用来存储资源信息。</span></p><p><span>接下来就是 Controller Manager 了，如果说 Kubernetes 是一个自动化运行的系统，那么就需要有一套管理规则来控制这套系统。Controller Manager 就是这个管理者，或者说是控制者。它包括 8 个 Controller，分别对应着副本，节点，资源，命名空间，服务等等。</span></p><p><span>紧接着，Scheduler 会把 Pod 调度到 Node 上，调度完以后就由 kubelet 来管理 Node 了。kubelet 用于处理 Master 下发到 Node 的任务（即 Scheduler 的调度任务），同时管理 Pod 及 Pod 中的容器。在完成资源调度以后，kubelet 进程也会在 APIServer 上注册 Node 信息，定期向 Master 汇报 Node 信息，并通过 cAdvisor 监控容器和节点资源。</span></p><p><span>由于，微服务的部署都是分布式的，所以对应的 Pod 以及容器的部署也是。为了能够方便地找到这些 Pod 或者容器，引入了 Service（kube-proxy）进程，它来负责反向代理和负载均衡的实施。</span></p><h3><a name="apiserver" class="md-header-anchor"></a><span>APIServer </span></h3><p><span>Kubernetes API Server 通过一个名为 kube-apiserver 的进程提供服务，该进程运行在 Master 上。可以通过 Master 的 8080 端口访问 kube-apiserver 进程，它提供 REST 服务。因此可以通过命令行工具 kubectl 来与 Kubernetes APIServer 交互，它们之间的接口是 RESTful API。</span></p><p><span>APIServer 的架构从上到下分为四层：</span></p><ul><li><strong><span>API 层：</span></strong><span>主要以 REST 方式提供各种 API 接口，针对 Kubernetes 资源对象的 CRUD 和 Watch 等主要 API，还有健康检查、UI、日志、性能指标等运维监控相关的 API。</span></li><li><strong><span>访问控制层：</span></strong><span>负责身份鉴权，核准用户对资源的访问权限，设置访问逻辑（Admission Control）。</span></li><li><strong><span>注册表层：</span></strong><span>选择要访问的资源对象。PS：Kubernetes 把所有资源对象都保存在注册表（Registry）中，例如：Pod，Service，Deployment 等等。</span></li><li><strong><span>etcd 数据库：</span></strong><span>保存创建副本的信息。用来持久化 Kubernetes 资源对象的 Key-Value 数据库。</span></li></ul><p><img src="https://mmbiz.qpic.cn/mmbiz_png/MOwlO0INfQqhpqVg6uyyP7yibrSoaLbqpdhoInNlpZdlsyAHnNEfF0e1xSgJnKR5OJPWRTTXCDk1QXw9WzZ4hTw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" referrerpolicy="no-referrer" alt="apiServer"></p><p><span>当 kubectl 用 Create 命令建立 Pod 时，是通过 APIServer 中的 API 层调用对应的 RESTAPI 方法。之后会进入权限控制层，通过 Authentication 获取调用者身份，Authorization 获取权限信息。AdmissionControl 中可配置权限认证插件，通过插件来检查请求约束。例如：启动容器之前需要下载镜像，或者检查具备某命名空间的资源。</span></p><p><span>当请求创建pod时，到了 Registry 层会从 CoreRegistry 资源中取出 1 个 Pod 作为要创建的 Kubernetes 资源对象。然后将 Node，Pod 和 Container 信息保存在 etcd 中去。这里的 etcd 可以是一个集群，由于里面保存集群中各个 Node/Pod/Container 的信息，所以必要时需要备份，或者保证其可靠性。</span></p><h3><a name="controller-manager" class="md-header-anchor"></a><strong><span>Controller Manager</span></strong><span> </span></h3><p><span>Kubernetes 需要管理集群中的不同资源，所以针对不同的资源要建立不同的 Controller。每个 Controller 通过监听机制获取 APIServer 中的事件（消息），它们通过 API Server 提供的（List-Watch）接口监控集群中的资源，并且调整资源的状态。</span></p><p><span>可以把它想象成一个尽职的管理者，随时管理和调整资源。比如 MySQL 所在的 Node 意外宕机了，Controller Manager 中的 Node Controller 会及时发现故障，并执行修复流程。</span></p><p><span>在部署了成百上千微服务的系统中，这个功能极大地协助了运维人员。从此可以看出，Controller Manager 是 Kubernetes 资源的管理者，是运维自动化的核心。</span></p><p><span>控制器只要包括：</span></p><ul><li><span>Replication管理器（ReplicationController资源的管理器）</span></li><li><span>ReplicaSet、DaemonSet以及Job控制器</span></li><li><span>Deployment控制器</span></li><li><span>StatefulSet控制器</span></li><li><span>Node控制器</span></li><li><span>Service控制器</span></li><li><span>EndPoints控制器</span></li><li><span>Namespace控制器</span></li><li><span>PersistentVolume控制器</span></li><li><span>其它</span></li></ul><h3><a name="scheduler" class="md-header-anchor"></a><strong><span>Scheduler</span></strong><span> </span></h3><p><span>Scheduler 的作用是，将待调度的 Pod 按照算法和策略绑定到 Node 上，同时将信息保存在 etcd 中。如果把 Scheduler 比作调度室，那么这三件事就是它需要关注的，待调度的 Pod、可用的 Node，调度算法和策略。</span></p><p><span>简单地说，就是通过调度算法/策略把 Pod 放到合适的 Node 中去。此时 Node 上的 kubelet 通过 APIServer 监听到 Scheduler 产生的 Pod 绑定事件，然后通过 Pod 的描述装载镜像文件，并且启动容器。</span></p><p><span>也就是说 Scheduler 负责思考，Pod 放在哪个 Node，然后将决策告诉 kubelet，kubelet 完成 Pod 在 Node 的加载工作。说白了，Scheduler 是 boss，kubelet 是干活的工人，他们都通过 APIServer 进行信息交换。</span></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/MOwlO0INfQqhpqVg6uyyP7yibrSoaLbqpsc5dAE94az1bMZIdC1FBO1h1xaQJkAPdExL8oqyM3CricTMlFyTBkibA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" referrerpolicy="no-referrer" alt="Scheduler"></p><h3><a name="service" class="md-header-anchor"></a><span>Service  </span></h3><p><span>作为部署在 Kubernetes 中，Pod 如何访问其他的 Pod 呢？答案是通过 Kubernetes 的 Service 机制。在 Kubernetes 中的 Service 定义了一个服务的访问入口地址（IP+Port）。Pod 中的应用通过这个地址访问一个或者一组 Pod 副本。Service 与后端 Pod 副本集群之间是通过 Label Selector 来实现连接的。Service 所访问的这一组 Pod 都会有同样的 Label，通过这样的方法知道这些 Pod 属于同一个组。</span></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/MOwlO0INfQqhpqVg6uyyP7yibrSoaLbqpbwkpXzH9mDn7RCnbicOghB76PicJHSrEpFMQm0w8HHj4Igh8r9RibdD2w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" referrerpolicy="no-referrer" alt="Service"></p><h3><a name="kube-proxy" class="md-header-anchor"></a><span>kube-proxy </span></h3><p><span>上面提到的 Service 只是一个概念，而真正将 Service 落实的是 kube-proxy。只有理解了 kube-proxy 的原理和机制，我们才能真正理解 Service 背后的实现逻辑。</span></p><p><span>在 Kubernetes 集群的每个 Node 上都会运行一个 kube-proxy 服务进程，我们可以把这个进程看作 Service 的负载均衡器，其核心功能是将到 Service 的请求转发到后端的多个 Pod 上。</span></p><p><span>此外，Service 的 Cluster-IP 与 NodePort 是 kube-proxy 服务通过 iptables 的 NAT 转换实现的。kube-proxy 在运行过程中动态创建与 Service 相关的 iptables 规则。</span></p><p><span>由于 iptables 机制针对的是本地的 kube-proxy 端口，所以在每个 Node 上都要运行 kube-proxy 组件。因此在 Kubernetes 集群内部，可以在任意 Node 上发起对 Service 的访问请求。</span></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/MOwlO0INfQqhpqVg6uyyP7yibrSoaLbqpS5vUIWmngoD6BWiax6fg6GcM4NNZCFAJjmBeDnsE2ibg5rPUic3WN4hrQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" referrerpolicy="no-referrer" alt="kube-proxy"></p><h3><a name="协同工作" class="md-header-anchor"></a><span>协同工作</span></h3><p><span>通过 kubectl 根据配置文件，向 APIServer 发送命令，在 Node 上面建立 Pod 和 Container。在 APIServer，经过 API 调用，权限控制，调用资源和存储资源的过程。实际上还没有真正开始部署应用。这里需要 Controller Manager，Scheduler 和 kubelet 的协助才能完成整个部署过程。</span></p><p><span>在介绍他们协同工作之前，要介绍一下在 Kubernetes 中的监听接口。从上面的操作知道，所有部署的信息都会写到 etcd 中保存。实际上 etcd 在存储部署信息的时候，会发送 Create 事件给 APIServer，而 APIServer 会通过监听（Watch）etcd 发过来的事件。其他组件也会监听（Watch）APIServer 发出来的事件。</span></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/MOwlO0INfQqhpqVg6uyyP7yibrSoaLbqpIvMTYR7vfxJtSBX5bbjcAeJ5ibibicIuVxVIiaw1hS3gFwMtsHibIcumQWw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" referrerpolicy="no-referrer" alt="Watch"></p><p><span>Kubernetes 就是用这种 List-Watch 的机制保持数据同步的，如上图：</span></p><ul><li><span>这里有三个 List-Watch，分别是 kube-controller-manager（运行在Master），kube-scheduler（运行在 Master），kublete（运行在 Node）。他们在进程已启动就会监听（Watch）APIServer 发出来的事件。</span></li><li><span>kubectl 通过命令行，在 APIServer 上建立一个 Pod 副本。</span></li><li><span>这个部署请求被记录到 etcd 中，存储起来。</span></li><li><span>当 etcd 接受创建 Pod 信息以后，会发送一个 Create 事件给 APIServer。</span></li><li><span>由于 Kubecontrollermanager 一直在监听 APIServer 中的事件。此时 APIServer 接受到了 Create 事件，又会发送给 Kubecontrollermanager。</span></li><li><span>Kubecontrollermanager 在接到 Create 事件以后，调用其中的 Replication Controller 来保证 Node 上面需要创建的副本数量。</span></li><li><span>在 Controller Manager 创建 Pod 副本以后，APIServer 会在 etcd 中记录这个 Pod 的详细信息。例如在 Pod 的副本数，Container 的内容是什么。</span></li><li><span>同样的 etcd 会将创建 Pod 的信息通过事件发送给 APIServer。</span></li><li><span>由于 Scheduler 在监听（Watch）APIServer，并且它在系统中起到了“承上启下”的作用，承上”是指它负责接收创建的 Pod 事件，为其安排 Node；“启下”是指安置工作完成后，Node 上的 kubelet 服务进程接管后继工作，负责 Pod 生命周期中的“下半生”。换句话说，Scheduler 的作用是将待调度的 Pod 按照调度算法和策略绑定到集群中 Node 上，并将绑定信息写入 etcd 中。</span></li><li><span>Scheduler 调度完毕以后会更新 Pod 的信息，此时的信息更加丰富了。除了知道 Pod 的副本数量，副本内容。还知道部署到哪个 Node 上面了。</span></li><li><span>同样，将上面的 Pod 信息更新到 etcd 中，保存起来。</span></li><li><span>etcd 将更新成功的事件发送给 APIServer。</span></li><li><span>注意这里的 kubelet 是在 Node 上面运行的进程，它也通过 List-Watch 的方式监听（Watch）APIServer 发送的 Pod 更新的事件。</span></li></ul><h2><a name="参考资料" class="md-header-anchor"></a><span>参考资料</span></h2><ul><li><a href='https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/'><span>What is Kubernetes</span></a></li><li><a href=' https://mp.weixin.qq.com/s/nRqywApFqiXIKjamjMlqKA '><span>我花了10个小时，写出了这篇 K8S 架构解析</span></a></li><li><a href='https://www.yunforum.net/pdf/kubernetes-in-action.pdf'><span>Kubernetes in Action 中文版 </span></a></li></ul></div>
+</body>
+</html>
